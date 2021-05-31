@@ -18,7 +18,7 @@
 			<h1 class="display-4" th:text="'Réplicas de: '+*{tema}" ></h1>
 			<p class="lead"></p>
 			<hr class="my-4">
-			<div th:replace="/fragmentos :: navbar"></div>
+			<div th:replace="fragmentos :: navbar"></div>
 			<p class="text-danger"></p>
 			<div th:if="*{error != null}" 
 				class="alert alert-warning alert-dismissible fade show" role="alert">
