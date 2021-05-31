@@ -58,7 +58,7 @@ public class TemasController {
 		if(!servicioTema.agregar(tema));
 			modelo.addAttribute("error", servicioTema.getMensaje());
 		}
-		return "redirect:/temas/listar";
+		return "redirect:temas/listar";
 	}
 	
 	@GetMapping("/temas/detalles/{id}")

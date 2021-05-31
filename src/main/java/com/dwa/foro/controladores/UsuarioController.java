@@ -28,7 +28,7 @@ public class UsuarioController {
 	public String agregar(@RequestParam("username") String correoe, 
 			@RequestParam("password") String clave,
 			Model modelo) {
-		    return "redirect:/temas/listar";
+		    return "redirect:temas/listar";
 		
 	}
 	
