@@ -42,7 +42,7 @@ public class UsuarioController {
 	public String agregar(Model modelo, @ModelAttribute Usuario user, @RequestParam("clave") String clave, HttpSession sesion) {
 		boolean res = servicioUsuario.agregar(user, clave, sesion);
 		if(res) {
-			return "redirect:/temas/listar";
+			return "redirect:temas/listar";
 		}
 		modelo.addAttribute("error", servicioUsuario.getMensaje());
 		return "usuario/agregar";
