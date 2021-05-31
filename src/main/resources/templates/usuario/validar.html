@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Agregar usuario</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<script src="/js/jquery-3.5.0.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-4">Bienvenido al foro de desarrollo web</h1>
+			<p class="lead">Necesitas identificarte.</p>
+			<hr class="my-4">
+			<p class="text-danger">*Proporciona los datos de tu cuenta para acceder al sitio.</p>
+			<div class="row">
+				<div class="col-3"></div>
+				<div class="col-5">
+					<div th:if="${param.error != null and session['SPRING_SECURITY_LAST_EXCEPTION'] != null}"
+						class="alert alert-warning alert-dismissible fade show"
+						role="alert">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<h4 th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></h4>
+					</div>
+					<form action="#" th:action="@{/usuario/validar}" method="post">
+						<label>Correo electrónico: </label> 
+						<input type="email" required="required" 
+							name="username" class="form-control" /> 
+						<label>Clave de acceso: </label> 
+							<input type="password" required="required" 
+							name="password" class="form-control" />
+						<p>
+							<input type="submit" value="Validar" /> 
+							<input type="reset"  value="Limpiar" />
+						</p>
+					</form>
+					<div class="form-group">
+						<div class="form-group">
+							<a th:href="@{/usuario/agregar}">No tengo una cuenta,
+								registrame...</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-4"></div>
+			</div>
+			<hr class="my-4">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<p>Desarrollo Web Avanzado</p>
+					<p>A4.6 Foro con Spring Boot</p>
+					<p>Alumno: Rafael López Arroyo</p>
+					<p>Fecha de entrega: 31 de mayo del 2021</p>
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

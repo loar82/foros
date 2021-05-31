@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Lista de réplicas</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<script src="/js/jquery-3.5.0.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-4" th:text="'Réplicas de: '+*{tema}" ></h1>
+			<p class="lead"></p>
+			<hr class="my-4">
+			<div th:replace="/fragmentos :: navbar"></div>
+			<p class="text-danger"></p>
+			<div th:if="*{error != null}" 
+				class="alert alert-warning alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4 th:text=*{error}></h4>
+			</div>
+			    <div class="row">
+					<div class="col-1"></div>
+					<div class="col-10">
+						<div th:if="*{replicas != null}">
+							<div th:each="replica : ${replicas}" class="card">
+									<h5 th:text="${replica.contenido}"></h5>
+									<label th:text="'Enviado por: '+${replica.usuario.alias}"></label>
+							</div>
+						</div>
+					</div>
+						<div class="col-1"></div>
+			      </div>
+
+			<div class="row">
+					<div class="col-2"></div>
+					<div class="col-9">
+						<form action="#" th:action="@{/temas/agregarreplica}" th:object="${replica}"
+							method="post">
+							<fieldset>
+							<legend>Responder...</legend>
+							<textarea rows="4" cols="50" required="required" th:field="*{contenido}"
+								class="form-control" placeholder="Máximo 400 caracteres."
+								maxlength="400" ></textarea>
+							<input type="hidden" th:field="*{tema}">
+							<p>
+								<input type="submit" value="Comentar" class="btn btn-primary" /> <input type="reset"
+										value="Limpiar" class="btn btn-secondary" />
+							</p>									
+							</fieldset>
+						</form>
+					</div>
+					<div class="col-1"></div>
+			  </div>
+			  <div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<p>Desarrollo Web Avanzado</p>
+					<p>Rafael López Arroyo</p>
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

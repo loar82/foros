@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Temas del Foro</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<script src="/js/jquery-3.5.0.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-4">Temas del Foro</h1>
+			<p th:text="*{mensaje}" class="lead"></p>
+			<hr class="my-4">
+			<div th:replace="/fragmentos :: navbar"></div>
+			<p class="text-danger"></p>
+				<div th:if="*{error != null}" class="alert alert-warning alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4 th:text=*{error}></h4>
+				</div>
+			<div class="row">
+					<div class="col-1"></div>
+					<div class="col-10">
+							<div th:if"*{temas != null}">
+								<div th:each="tema : ${temas}" class="card">
+									<h3><a th:href="'/temas/detalles/' + ${tema.id}" th:text="${tema.titulo}"></a></h3>
+									<h6 th:text="${tema.descripcion}"></h6>
+									<label th:text="'Creado por: '+${tema.usuario.nombre}"></label>
+								</div>
+							</div>
+					</div>
+						<div class="col-1"></div>
+			</div>
+
+			<div class="row">
+					<div class="col-3"></div>
+					<div class="col-6">
+						<form action="#" th:action="@{/temas/agregar}" th:object="${tema}"
+							method="post">
+							<fieldset>
+							<legend>Agregue un nuevo tema</legend>
+							<label>Título del tema: </label>
+							<input type="text" required="required" th:field="*{titulo}"
+								class="form-control" placeholder="P.e. MVC en Spring"
+								maxlength="60" />
+							<label>Descripción: </label>
+							<textarea rows="4" cols="50" required="required" th:field="*{descripcion}"
+								class="form-control" placeholder="Máximo 200 caracteres"
+								maxlength="200" ></textarea>
+							<p>
+								<input type="submit" value="Registro" /> <input type="reset"
+										value="Limpiar" />
+							</p>									
+							</fieldset>
+						</form>
+					</div>
+						<div class="col-3"></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<p>Desarrollo Web Avanzado</p>
+					<p>Rafael López Arroyo</p>
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
